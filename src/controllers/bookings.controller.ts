@@ -1,12 +1,12 @@
 import { Router, Request, Response } from 'express';
-import prisma from 'src/database/prisma';
+import prisma from '../database/prisma';
 
 export const listBookings = async (req: Request, res: Response) => {
    try {
       const bookings = await prisma.booking.findMany();
       res.json(bookings);
    } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch bookings' });
+      res.status(500).json({ error: 'Failed to fetch bookings', e: error });
    }
 }
 

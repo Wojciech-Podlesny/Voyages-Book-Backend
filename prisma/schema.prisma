@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "./src/generated/client"
 }
 
 datasource db {
@@ -18,9 +18,12 @@ model User {
 
 model Booking {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String
-  voyageId  String
+  userId    String @db.ObjectId
+  voyageId  String @db.ObjectId
   createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+  voyage Voyage? @relation(fields: [voyageId], references: [id])
 }
 
 model Ship {
