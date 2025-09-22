@@ -46,3 +46,15 @@ export const getUser = async (req: Request, res: Response) => {
       res.status(500).json({ error: 'Failed to fetch user' });
    }
 }
+
+export const createUser = async (req: Request, res: Response) => {
+   try {
+      const { email, password, name } = req.body;
+      const newUser = await prisma.user.create({
+         data: { email, password, name }
+      });
+      res.status(201).json(newUser);
+   } catch (error) {
+      res.status(500).json({ error: 'Failed to create user' });
+   }
+}

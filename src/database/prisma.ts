@@ -9,15 +9,15 @@ export default prisma;
 
 /*
 
-import ...
-declare global {
-    var prisma: PrismaClient | undefined
-}
+// import ...
+// declare global {
+//     var prisma: PrismaClient | undefined
+// }
 
-const prisma = global.prisma || new PrismaClien()
+// const prisma = global.prisma || new PrismaClien()
 
-if(process.env.NODE_ENV !== "production") global.prisma = prisma
+// if(process.env.NODE_ENV !== "production") global.prisma = prisma
 
-export default prisma
+// export default prisma
 
-*/
+// */

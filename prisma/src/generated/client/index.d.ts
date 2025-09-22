@@ -1078,6 +1078,98 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    bookings: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bookings?: boolean | UserCountOutputTypeCountBookingsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingWhereInput
+  }
+
+
+  /**
+   * Count Type ShipCountOutputType
+   */
+
+  export type ShipCountOutputType = {
+    voyages: number
+  }
+
+  export type ShipCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voyages?: boolean | ShipCountOutputTypeCountVoyagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ShipCountOutputType without action
+   */
+  export type ShipCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShipCountOutputType
+     */
+    select?: ShipCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ShipCountOutputType without action
+   */
+  export type ShipCountOutputTypeCountVoyagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VoyageWhereInput
+  }
+
+
+  /**
+   * Count Type VoyageCountOutputType
+   */
+
+  export type VoyageCountOutputType = {
+    bookings: number
+  }
+
+  export type VoyageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bookings?: boolean | VoyageCountOutputTypeCountBookingsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VoyageCountOutputType without action
+   */
+  export type VoyageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoyageCountOutputType
+     */
+    select?: VoyageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VoyageCountOutputType without action
+   */
+  export type VoyageCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingWhereInput
+  }
+
 
   /**
    * Models
@@ -1239,6 +1331,8 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     name?: boolean
+    bookings?: boolean | User$bookingsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
 
@@ -1251,10 +1345,16 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "name", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bookings?: boolean | User$bookingsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      bookings: Prisma.$BookingPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
@@ -1623,6 +1723,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    bookings<T extends User$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, User$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1673,6 +1774,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1691,6 +1796,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1708,6 +1817,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1757,6 +1870,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1805,6 +1922,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1848,6 +1969,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -1875,6 +2000,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1916,6 +2045,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1941,6 +2074,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter which User to delete.
      */
@@ -1990,6 +2127,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.bookings
+   */
+  export type User$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Booking
+     */
+    omit?: BookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    where?: BookingWhereInput
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    cursor?: BookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2001,6 +2162,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -2160,6 +2325,8 @@ export namespace Prisma {
     userId?: boolean
     voyageId?: boolean
     createdAt?: boolean
+    user?: boolean | Booking$userArgs<ExtArgs>
+    voyage?: boolean | Booking$voyageArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
 
 
@@ -2172,10 +2339,17 @@ export namespace Prisma {
   }
 
   export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "voyageId" | "createdAt", ExtArgs["result"]["booking"]>
+  export type BookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Booking$userArgs<ExtArgs>
+    voyage?: boolean | Booking$voyageArgs<ExtArgs>
+  }
 
   export type $BookingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Booking"
-    objects: {}
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+      voyage: Prisma.$VoyagePayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
@@ -2544,6 +2718,8 @@ export namespace Prisma {
    */
   export interface Prisma__BookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends Booking$userArgs<ExtArgs> = {}>(args?: Subset<T, Booking$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    voyage<T extends Booking$voyageArgs<ExtArgs> = {}>(args?: Subset<T, Booking$voyageArgs<ExtArgs>>): Prisma__VoyageClient<$Result.GetResult<Prisma.$VoyagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2594,6 +2770,10 @@ export namespace Prisma {
      */
     omit?: BookingOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
      * Filter, which Booking to fetch.
      */
     where: BookingWhereUniqueInput
@@ -2612,6 +2792,10 @@ export namespace Prisma {
      */
     omit?: BookingOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
      * Filter, which Booking to fetch.
      */
     where: BookingWhereUniqueInput
@@ -2629,6 +2813,10 @@ export namespace Prisma {
      * Omit specific fields from the Booking
      */
     omit?: BookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
     /**
      * Filter, which Booking to fetch.
      */
@@ -2678,6 +2866,10 @@ export namespace Prisma {
      */
     omit?: BookingOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
      * Filter, which Booking to fetch.
      */
     where?: BookingWhereInput
@@ -2726,6 +2918,10 @@ export namespace Prisma {
      */
     omit?: BookingOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
      * Filter, which Bookings to fetch.
      */
     where?: BookingWhereInput
@@ -2769,6 +2965,10 @@ export namespace Prisma {
      */
     omit?: BookingOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
      * The data needed to create a Booking.
      */
     data: XOR<BookingCreateInput, BookingUncheckedCreateInput>
@@ -2796,6 +2996,10 @@ export namespace Prisma {
      * Omit specific fields from the Booking
      */
     omit?: BookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
     /**
      * The data needed to update a Booking.
      */
@@ -2837,6 +3041,10 @@ export namespace Prisma {
      */
     omit?: BookingOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    /**
      * The filter to search for the Booking to update in case it exists.
      */
     where: BookingWhereUniqueInput
@@ -2862,6 +3070,10 @@ export namespace Prisma {
      * Omit specific fields from the Booking
      */
     omit?: BookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
     /**
      * Filter which Booking to delete.
      */
@@ -2911,6 +3123,44 @@ export namespace Prisma {
   }
 
   /**
+   * Booking.user
+   */
+  export type Booking$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Booking.voyage
+   */
+  export type Booking$voyageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voyage
+     */
+    select?: VoyageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voyage
+     */
+    omit?: VoyageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
+    where?: VoyageWhereInput
+  }
+
+  /**
    * Booking without action
    */
   export type BookingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2922,6 +3172,10 @@ export namespace Prisma {
      * Omit specific fields from the Booking
      */
     omit?: BookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
   }
 
 
@@ -3065,6 +3319,8 @@ export namespace Prisma {
   export type ShipSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    voyages?: boolean | Ship$voyagesArgs<ExtArgs>
+    _count?: boolean | ShipCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ship"]>
 
 
@@ -3075,10 +3331,16 @@ export namespace Prisma {
   }
 
   export type ShipOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["ship"]>
+  export type ShipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voyages?: boolean | Ship$voyagesArgs<ExtArgs>
+    _count?: boolean | ShipCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $ShipPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Ship"
-    objects: {}
+    objects: {
+      voyages: Prisma.$VoyagePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
@@ -3445,6 +3707,7 @@ export namespace Prisma {
    */
   export interface Prisma__ShipClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    voyages<T extends Ship$voyagesArgs<ExtArgs> = {}>(args?: Subset<T, Ship$voyagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoyagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3493,6 +3756,10 @@ export namespace Prisma {
      */
     omit?: ShipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
+    /**
      * Filter, which Ship to fetch.
      */
     where: ShipWhereUniqueInput
@@ -3511,6 +3778,10 @@ export namespace Prisma {
      */
     omit?: ShipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
+    /**
      * Filter, which Ship to fetch.
      */
     where: ShipWhereUniqueInput
@@ -3528,6 +3799,10 @@ export namespace Prisma {
      * Omit specific fields from the Ship
      */
     omit?: ShipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
     /**
      * Filter, which Ship to fetch.
      */
@@ -3577,6 +3852,10 @@ export namespace Prisma {
      */
     omit?: ShipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
+    /**
      * Filter, which Ship to fetch.
      */
     where?: ShipWhereInput
@@ -3625,6 +3904,10 @@ export namespace Prisma {
      */
     omit?: ShipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
+    /**
      * Filter, which Ships to fetch.
      */
     where?: ShipWhereInput
@@ -3668,6 +3951,10 @@ export namespace Prisma {
      */
     omit?: ShipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
+    /**
      * The data needed to create a Ship.
      */
     data: XOR<ShipCreateInput, ShipUncheckedCreateInput>
@@ -3695,6 +3982,10 @@ export namespace Prisma {
      * Omit specific fields from the Ship
      */
     omit?: ShipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
     /**
      * The data needed to update a Ship.
      */
@@ -3736,6 +4027,10 @@ export namespace Prisma {
      */
     omit?: ShipOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
+    /**
      * The filter to search for the Ship to update in case it exists.
      */
     where: ShipWhereUniqueInput
@@ -3761,6 +4056,10 @@ export namespace Prisma {
      * Omit specific fields from the Ship
      */
     omit?: ShipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
     /**
      * Filter which Ship to delete.
      */
@@ -3810,6 +4109,30 @@ export namespace Prisma {
   }
 
   /**
+   * Ship.voyages
+   */
+  export type Ship$voyagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voyage
+     */
+    select?: VoyageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voyage
+     */
+    omit?: VoyageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
+    where?: VoyageWhereInput
+    orderBy?: VoyageOrderByWithRelationInput | VoyageOrderByWithRelationInput[]
+    cursor?: VoyageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VoyageScalarFieldEnum | VoyageScalarFieldEnum[]
+  }
+
+  /**
    * Ship without action
    */
   export type ShipDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3821,6 +4144,10 @@ export namespace Prisma {
      * Omit specific fields from the Ship
      */
     omit?: ShipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
   }
 
 
@@ -3972,6 +4299,9 @@ export namespace Prisma {
     id?: boolean
     shipId?: boolean
     date?: boolean
+    bookings?: boolean | Voyage$bookingsArgs<ExtArgs>
+    ship?: boolean | Voyage$shipArgs<ExtArgs>
+    _count?: boolean | VoyageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["voyage"]>
 
 
@@ -3983,10 +4313,18 @@ export namespace Prisma {
   }
 
   export type VoyageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "shipId" | "date", ExtArgs["result"]["voyage"]>
+  export type VoyageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bookings?: boolean | Voyage$bookingsArgs<ExtArgs>
+    ship?: boolean | Voyage$shipArgs<ExtArgs>
+    _count?: boolean | VoyageCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $VoyagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Voyage"
-    objects: {}
+    objects: {
+      bookings: Prisma.$BookingPayload<ExtArgs>[]
+      ship: Prisma.$ShipPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       shipId: string
@@ -4354,6 +4692,8 @@ export namespace Prisma {
    */
   export interface Prisma__VoyageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    bookings<T extends Voyage$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, Voyage$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ship<T extends Voyage$shipArgs<ExtArgs> = {}>(args?: Subset<T, Voyage$shipArgs<ExtArgs>>): Prisma__ShipClient<$Result.GetResult<Prisma.$ShipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4403,6 +4743,10 @@ export namespace Prisma {
      */
     omit?: VoyageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
+    /**
      * Filter, which Voyage to fetch.
      */
     where: VoyageWhereUniqueInput
@@ -4421,6 +4765,10 @@ export namespace Prisma {
      */
     omit?: VoyageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
+    /**
      * Filter, which Voyage to fetch.
      */
     where: VoyageWhereUniqueInput
@@ -4438,6 +4786,10 @@ export namespace Prisma {
      * Omit specific fields from the Voyage
      */
     omit?: VoyageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
     /**
      * Filter, which Voyage to fetch.
      */
@@ -4487,6 +4839,10 @@ export namespace Prisma {
      */
     omit?: VoyageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
+    /**
      * Filter, which Voyage to fetch.
      */
     where?: VoyageWhereInput
@@ -4535,6 +4891,10 @@ export namespace Prisma {
      */
     omit?: VoyageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
+    /**
      * Filter, which Voyages to fetch.
      */
     where?: VoyageWhereInput
@@ -4578,6 +4938,10 @@ export namespace Prisma {
      */
     omit?: VoyageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
+    /**
      * The data needed to create a Voyage.
      */
     data: XOR<VoyageCreateInput, VoyageUncheckedCreateInput>
@@ -4605,6 +4969,10 @@ export namespace Prisma {
      * Omit specific fields from the Voyage
      */
     omit?: VoyageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
     /**
      * The data needed to update a Voyage.
      */
@@ -4646,6 +5014,10 @@ export namespace Prisma {
      */
     omit?: VoyageOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
+    /**
      * The filter to search for the Voyage to update in case it exists.
      */
     where: VoyageWhereUniqueInput
@@ -4671,6 +5043,10 @@ export namespace Prisma {
      * Omit specific fields from the Voyage
      */
     omit?: VoyageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
     /**
      * Filter which Voyage to delete.
      */
@@ -4720,6 +5096,49 @@ export namespace Prisma {
   }
 
   /**
+   * Voyage.bookings
+   */
+  export type Voyage$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Booking
+     */
+    omit?: BookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    where?: BookingWhereInput
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    cursor?: BookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+  }
+
+  /**
+   * Voyage.ship
+   */
+  export type Voyage$shipArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ship
+     */
+    select?: ShipSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ship
+     */
+    omit?: ShipOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShipInclude<ExtArgs> | null
+    where?: ShipWhereInput
+  }
+
+  /**
    * Voyage without action
    */
   export type VoyageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4731,6 +5150,10 @@ export namespace Prisma {
      * Omit specific fields from the Voyage
      */
     omit?: VoyageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoyageInclude<ExtArgs> | null
   }
 
 
@@ -4849,6 +5272,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
+    bookings?: BookingListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4856,6 +5280,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     name?: SortOrder
+    bookings?: BookingOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4866,6 +5291,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
+    bookings?: BookingListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -4896,6 +5322,8 @@ export namespace Prisma {
     userId?: StringFilter<"Booking"> | string
     voyageId?: StringFilter<"Booking"> | string
     createdAt?: DateTimeFilter<"Booking"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    voyage?: XOR<VoyageNullableScalarRelationFilter, VoyageWhereInput> | null
   }
 
   export type BookingOrderByWithRelationInput = {
@@ -4903,6 +5331,8 @@ export namespace Prisma {
     userId?: SortOrder
     voyageId?: SortOrder
     createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    voyage?: VoyageOrderByWithRelationInput
   }
 
   export type BookingWhereUniqueInput = Prisma.AtLeast<{
@@ -4913,6 +5343,8 @@ export namespace Prisma {
     userId?: StringFilter<"Booking"> | string
     voyageId?: StringFilter<"Booking"> | string
     createdAt?: DateTimeFilter<"Booking"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    voyage?: XOR<VoyageNullableScalarRelationFilter, VoyageWhereInput> | null
   }, "id">
 
   export type BookingOrderByWithAggregationInput = {
@@ -4941,11 +5373,13 @@ export namespace Prisma {
     NOT?: ShipWhereInput | ShipWhereInput[]
     id?: StringFilter<"Ship"> | string
     name?: StringFilter<"Ship"> | string
+    voyages?: VoyageListRelationFilter
   }
 
   export type ShipOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    voyages?: VoyageOrderByRelationAggregateInput
   }
 
   export type ShipWhereUniqueInput = Prisma.AtLeast<{
@@ -4954,6 +5388,7 @@ export namespace Prisma {
     OR?: ShipWhereInput[]
     NOT?: ShipWhereInput | ShipWhereInput[]
     name?: StringFilter<"Ship"> | string
+    voyages?: VoyageListRelationFilter
   }, "id">
 
   export type ShipOrderByWithAggregationInput = {
@@ -4979,12 +5414,16 @@ export namespace Prisma {
     id?: StringFilter<"Voyage"> | string
     shipId?: StringFilter<"Voyage"> | string
     date?: DateTimeFilter<"Voyage"> | Date | string
+    bookings?: BookingListRelationFilter
+    ship?: XOR<ShipNullableScalarRelationFilter, ShipWhereInput> | null
   }
 
   export type VoyageOrderByWithRelationInput = {
     id?: SortOrder
     shipId?: SortOrder
     date?: SortOrder
+    bookings?: BookingOrderByRelationAggregateInput
+    ship?: ShipOrderByWithRelationInput
   }
 
   export type VoyageWhereUniqueInput = Prisma.AtLeast<{
@@ -4994,6 +5433,8 @@ export namespace Prisma {
     NOT?: VoyageWhereInput | VoyageWhereInput[]
     shipId?: StringFilter<"Voyage"> | string
     date?: DateTimeFilter<"Voyage"> | Date | string
+    bookings?: BookingListRelationFilter
+    ship?: XOR<ShipNullableScalarRelationFilter, ShipWhereInput> | null
   }, "id">
 
   export type VoyageOrderByWithAggregationInput = {
@@ -5019,6 +5460,7 @@ export namespace Prisma {
     email: string
     password: string
     name: string
+    bookings?: BookingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -5026,18 +5468,21 @@ export namespace Prisma {
     email: string
     password: string
     name: string
+    bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    bookings?: BookingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -5061,9 +5506,9 @@ export namespace Prisma {
 
   export type BookingCreateInput = {
     id?: string
-    userId: string
-    voyageId: string
     createdAt?: Date | string
+    user?: UserCreateNestedOneWithoutBookingsInput
+    voyage?: VoyageCreateNestedOneWithoutBookingsInput
   }
 
   export type BookingUncheckedCreateInput = {
@@ -5074,9 +5519,9 @@ export namespace Prisma {
   }
 
   export type BookingUpdateInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    voyageId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutBookingsNestedInput
+    voyage?: VoyageUpdateOneWithoutBookingsNestedInput
   }
 
   export type BookingUncheckedUpdateInput = {
@@ -5093,8 +5538,6 @@ export namespace Prisma {
   }
 
   export type BookingUpdateManyMutationInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    voyageId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -5107,19 +5550,23 @@ export namespace Prisma {
   export type ShipCreateInput = {
     id?: string
     name: string
+    voyages?: VoyageCreateNestedManyWithoutShipInput
   }
 
   export type ShipUncheckedCreateInput = {
     id?: string
     name: string
+    voyages?: VoyageUncheckedCreateNestedManyWithoutShipInput
   }
 
   export type ShipUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    voyages?: VoyageUpdateManyWithoutShipNestedInput
   }
 
   export type ShipUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    voyages?: VoyageUncheckedUpdateManyWithoutShipNestedInput
   }
 
   export type ShipCreateManyInput = {
@@ -5137,24 +5584,28 @@ export namespace Prisma {
 
   export type VoyageCreateInput = {
     id?: string
-    shipId: string
     date: Date | string
+    bookings?: BookingCreateNestedManyWithoutVoyageInput
+    ship?: ShipCreateNestedOneWithoutVoyagesInput
   }
 
   export type VoyageUncheckedCreateInput = {
     id?: string
     shipId: string
     date: Date | string
+    bookings?: BookingUncheckedCreateNestedManyWithoutVoyageInput
   }
 
   export type VoyageUpdateInput = {
-    shipId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUpdateManyWithoutVoyageNestedInput
+    ship?: ShipUpdateOneWithoutVoyagesNestedInput
   }
 
   export type VoyageUncheckedUpdateInput = {
     shipId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUncheckedUpdateManyWithoutVoyageNestedInput
   }
 
   export type VoyageCreateManyInput = {
@@ -5164,7 +5615,6 @@ export namespace Prisma {
   }
 
   export type VoyageUpdateManyMutationInput = {
-    shipId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -5186,6 +5636,16 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type BookingListRelationFilter = {
+    every?: BookingWhereInput
+    some?: BookingWhereInput
+    none?: BookingWhereInput
+  }
+
+  export type BookingOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -5238,6 +5698,16 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type VoyageNullableScalarRelationFilter = {
+    is?: VoyageWhereInput | null
+    isNot?: VoyageWhereInput | null
+  }
+
   export type BookingCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -5273,6 +5743,16 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type VoyageListRelationFilter = {
+    every?: VoyageWhereInput
+    some?: VoyageWhereInput
+    none?: VoyageWhereInput
+  }
+
+  export type VoyageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ShipCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -5286,6 +5766,11 @@ export namespace Prisma {
   export type ShipMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+  }
+
+  export type ShipNullableScalarRelationFilter = {
+    is?: ShipWhereInput | null
+    isNot?: ShipWhereInput | null
   }
 
   export type VoyageCountOrderByAggregateInput = {
@@ -5306,12 +5791,186 @@ export namespace Prisma {
     date?: SortOrder
   }
 
+  export type BookingCreateNestedManyWithoutUserInput = {
+    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
+    createMany?: BookingCreateManyUserInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
+  export type BookingUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
+    createMany?: BookingCreateManyUserInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
+  export type BookingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutUserInput | BookingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BookingCreateManyUserInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutUserInput | BookingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutUserInput | BookingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
+  }
+
+  export type BookingUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutUserInput | BookingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BookingCreateManyUserInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutUserInput | BookingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutUserInput | BookingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutBookingsInput = {
+    create?: XOR<UserCreateWithoutBookingsInput, UserUncheckedCreateWithoutBookingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBookingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type VoyageCreateNestedOneWithoutBookingsInput = {
+    create?: XOR<VoyageCreateWithoutBookingsInput, VoyageUncheckedCreateWithoutBookingsInput>
+    connectOrCreate?: VoyageCreateOrConnectWithoutBookingsInput
+    connect?: VoyageWhereUniqueInput
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type UserUpdateOneWithoutBookingsNestedInput = {
+    create?: XOR<UserCreateWithoutBookingsInput, UserUncheckedCreateWithoutBookingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBookingsInput
+    upsert?: UserUpsertWithoutBookingsInput
+    disconnect?: boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBookingsInput, UserUpdateWithoutBookingsInput>, UserUncheckedUpdateWithoutBookingsInput>
+  }
+
+  export type VoyageUpdateOneWithoutBookingsNestedInput = {
+    create?: XOR<VoyageCreateWithoutBookingsInput, VoyageUncheckedCreateWithoutBookingsInput>
+    connectOrCreate?: VoyageCreateOrConnectWithoutBookingsInput
+    upsert?: VoyageUpsertWithoutBookingsInput
+    disconnect?: boolean
+    delete?: VoyageWhereInput | boolean
+    connect?: VoyageWhereUniqueInput
+    update?: XOR<XOR<VoyageUpdateToOneWithWhereWithoutBookingsInput, VoyageUpdateWithoutBookingsInput>, VoyageUncheckedUpdateWithoutBookingsInput>
+  }
+
+  export type VoyageCreateNestedManyWithoutShipInput = {
+    create?: XOR<VoyageCreateWithoutShipInput, VoyageUncheckedCreateWithoutShipInput> | VoyageCreateWithoutShipInput[] | VoyageUncheckedCreateWithoutShipInput[]
+    connectOrCreate?: VoyageCreateOrConnectWithoutShipInput | VoyageCreateOrConnectWithoutShipInput[]
+    createMany?: VoyageCreateManyShipInputEnvelope
+    connect?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+  }
+
+  export type VoyageUncheckedCreateNestedManyWithoutShipInput = {
+    create?: XOR<VoyageCreateWithoutShipInput, VoyageUncheckedCreateWithoutShipInput> | VoyageCreateWithoutShipInput[] | VoyageUncheckedCreateWithoutShipInput[]
+    connectOrCreate?: VoyageCreateOrConnectWithoutShipInput | VoyageCreateOrConnectWithoutShipInput[]
+    createMany?: VoyageCreateManyShipInputEnvelope
+    connect?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+  }
+
+  export type VoyageUpdateManyWithoutShipNestedInput = {
+    create?: XOR<VoyageCreateWithoutShipInput, VoyageUncheckedCreateWithoutShipInput> | VoyageCreateWithoutShipInput[] | VoyageUncheckedCreateWithoutShipInput[]
+    connectOrCreate?: VoyageCreateOrConnectWithoutShipInput | VoyageCreateOrConnectWithoutShipInput[]
+    upsert?: VoyageUpsertWithWhereUniqueWithoutShipInput | VoyageUpsertWithWhereUniqueWithoutShipInput[]
+    createMany?: VoyageCreateManyShipInputEnvelope
+    set?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+    disconnect?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+    delete?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+    connect?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+    update?: VoyageUpdateWithWhereUniqueWithoutShipInput | VoyageUpdateWithWhereUniqueWithoutShipInput[]
+    updateMany?: VoyageUpdateManyWithWhereWithoutShipInput | VoyageUpdateManyWithWhereWithoutShipInput[]
+    deleteMany?: VoyageScalarWhereInput | VoyageScalarWhereInput[]
+  }
+
+  export type VoyageUncheckedUpdateManyWithoutShipNestedInput = {
+    create?: XOR<VoyageCreateWithoutShipInput, VoyageUncheckedCreateWithoutShipInput> | VoyageCreateWithoutShipInput[] | VoyageUncheckedCreateWithoutShipInput[]
+    connectOrCreate?: VoyageCreateOrConnectWithoutShipInput | VoyageCreateOrConnectWithoutShipInput[]
+    upsert?: VoyageUpsertWithWhereUniqueWithoutShipInput | VoyageUpsertWithWhereUniqueWithoutShipInput[]
+    createMany?: VoyageCreateManyShipInputEnvelope
+    set?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+    disconnect?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+    delete?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+    connect?: VoyageWhereUniqueInput | VoyageWhereUniqueInput[]
+    update?: VoyageUpdateWithWhereUniqueWithoutShipInput | VoyageUpdateWithWhereUniqueWithoutShipInput[]
+    updateMany?: VoyageUpdateManyWithWhereWithoutShipInput | VoyageUpdateManyWithWhereWithoutShipInput[]
+    deleteMany?: VoyageScalarWhereInput | VoyageScalarWhereInput[]
+  }
+
+  export type BookingCreateNestedManyWithoutVoyageInput = {
+    create?: XOR<BookingCreateWithoutVoyageInput, BookingUncheckedCreateWithoutVoyageInput> | BookingCreateWithoutVoyageInput[] | BookingUncheckedCreateWithoutVoyageInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutVoyageInput | BookingCreateOrConnectWithoutVoyageInput[]
+    createMany?: BookingCreateManyVoyageInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
+  export type ShipCreateNestedOneWithoutVoyagesInput = {
+    create?: XOR<ShipCreateWithoutVoyagesInput, ShipUncheckedCreateWithoutVoyagesInput>
+    connectOrCreate?: ShipCreateOrConnectWithoutVoyagesInput
+    connect?: ShipWhereUniqueInput
+  }
+
+  export type BookingUncheckedCreateNestedManyWithoutVoyageInput = {
+    create?: XOR<BookingCreateWithoutVoyageInput, BookingUncheckedCreateWithoutVoyageInput> | BookingCreateWithoutVoyageInput[] | BookingUncheckedCreateWithoutVoyageInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutVoyageInput | BookingCreateOrConnectWithoutVoyageInput[]
+    createMany?: BookingCreateManyVoyageInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
+  export type BookingUpdateManyWithoutVoyageNestedInput = {
+    create?: XOR<BookingCreateWithoutVoyageInput, BookingUncheckedCreateWithoutVoyageInput> | BookingCreateWithoutVoyageInput[] | BookingUncheckedCreateWithoutVoyageInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutVoyageInput | BookingCreateOrConnectWithoutVoyageInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutVoyageInput | BookingUpsertWithWhereUniqueWithoutVoyageInput[]
+    createMany?: BookingCreateManyVoyageInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutVoyageInput | BookingUpdateWithWhereUniqueWithoutVoyageInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutVoyageInput | BookingUpdateManyWithWhereWithoutVoyageInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
+  }
+
+  export type ShipUpdateOneWithoutVoyagesNestedInput = {
+    create?: XOR<ShipCreateWithoutVoyagesInput, ShipUncheckedCreateWithoutVoyagesInput>
+    connectOrCreate?: ShipCreateOrConnectWithoutVoyagesInput
+    upsert?: ShipUpsertWithoutVoyagesInput
+    disconnect?: boolean
+    delete?: ShipWhereInput | boolean
+    connect?: ShipWhereUniqueInput
+    update?: XOR<XOR<ShipUpdateToOneWithWhereWithoutVoyagesInput, ShipUpdateWithoutVoyagesInput>, ShipUncheckedUpdateWithoutVoyagesInput>
+  }
+
+  export type BookingUncheckedUpdateManyWithoutVoyageNestedInput = {
+    create?: XOR<BookingCreateWithoutVoyageInput, BookingUncheckedCreateWithoutVoyageInput> | BookingCreateWithoutVoyageInput[] | BookingUncheckedCreateWithoutVoyageInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutVoyageInput | BookingCreateOrConnectWithoutVoyageInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutVoyageInput | BookingUpsertWithWhereUniqueWithoutVoyageInput[]
+    createMany?: BookingCreateManyVoyageInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutVoyageInput | BookingUpdateWithWhereUniqueWithoutVoyageInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutVoyageInput | BookingUpdateManyWithWhereWithoutVoyageInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5379,6 +6038,311 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BookingCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    voyage?: VoyageCreateNestedOneWithoutBookingsInput
+  }
+
+  export type BookingUncheckedCreateWithoutUserInput = {
+    id?: string
+    voyageId: string
+    createdAt?: Date | string
+  }
+
+  export type BookingCreateOrConnectWithoutUserInput = {
+    where: BookingWhereUniqueInput
+    create: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput>
+  }
+
+  export type BookingCreateManyUserInputEnvelope = {
+    data: BookingCreateManyUserInput | BookingCreateManyUserInput[]
+  }
+
+  export type BookingUpsertWithWhereUniqueWithoutUserInput = {
+    where: BookingWhereUniqueInput
+    update: XOR<BookingUpdateWithoutUserInput, BookingUncheckedUpdateWithoutUserInput>
+    create: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput>
+  }
+
+  export type BookingUpdateWithWhereUniqueWithoutUserInput = {
+    where: BookingWhereUniqueInput
+    data: XOR<BookingUpdateWithoutUserInput, BookingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type BookingUpdateManyWithWhereWithoutUserInput = {
+    where: BookingScalarWhereInput
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type BookingScalarWhereInput = {
+    AND?: BookingScalarWhereInput | BookingScalarWhereInput[]
+    OR?: BookingScalarWhereInput[]
+    NOT?: BookingScalarWhereInput | BookingScalarWhereInput[]
+    id?: StringFilter<"Booking"> | string
+    userId?: StringFilter<"Booking"> | string
+    voyageId?: StringFilter<"Booking"> | string
+    createdAt?: DateTimeFilter<"Booking"> | Date | string
+  }
+
+  export type UserCreateWithoutBookingsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+  }
+
+  export type UserUncheckedCreateWithoutBookingsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+  }
+
+  export type UserCreateOrConnectWithoutBookingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBookingsInput, UserUncheckedCreateWithoutBookingsInput>
+  }
+
+  export type VoyageCreateWithoutBookingsInput = {
+    id?: string
+    date: Date | string
+    ship?: ShipCreateNestedOneWithoutVoyagesInput
+  }
+
+  export type VoyageUncheckedCreateWithoutBookingsInput = {
+    id?: string
+    shipId: string
+    date: Date | string
+  }
+
+  export type VoyageCreateOrConnectWithoutBookingsInput = {
+    where: VoyageWhereUniqueInput
+    create: XOR<VoyageCreateWithoutBookingsInput, VoyageUncheckedCreateWithoutBookingsInput>
+  }
+
+  export type UserUpsertWithoutBookingsInput = {
+    update: XOR<UserUpdateWithoutBookingsInput, UserUncheckedUpdateWithoutBookingsInput>
+    create: XOR<UserCreateWithoutBookingsInput, UserUncheckedCreateWithoutBookingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBookingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBookingsInput, UserUncheckedUpdateWithoutBookingsInput>
+  }
+
+  export type UserUpdateWithoutBookingsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUncheckedUpdateWithoutBookingsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VoyageUpsertWithoutBookingsInput = {
+    update: XOR<VoyageUpdateWithoutBookingsInput, VoyageUncheckedUpdateWithoutBookingsInput>
+    create: XOR<VoyageCreateWithoutBookingsInput, VoyageUncheckedCreateWithoutBookingsInput>
+    where?: VoyageWhereInput
+  }
+
+  export type VoyageUpdateToOneWithWhereWithoutBookingsInput = {
+    where?: VoyageWhereInput
+    data: XOR<VoyageUpdateWithoutBookingsInput, VoyageUncheckedUpdateWithoutBookingsInput>
+  }
+
+  export type VoyageUpdateWithoutBookingsInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    ship?: ShipUpdateOneWithoutVoyagesNestedInput
+  }
+
+  export type VoyageUncheckedUpdateWithoutBookingsInput = {
+    shipId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VoyageCreateWithoutShipInput = {
+    id?: string
+    date: Date | string
+    bookings?: BookingCreateNestedManyWithoutVoyageInput
+  }
+
+  export type VoyageUncheckedCreateWithoutShipInput = {
+    id?: string
+    date: Date | string
+    bookings?: BookingUncheckedCreateNestedManyWithoutVoyageInput
+  }
+
+  export type VoyageCreateOrConnectWithoutShipInput = {
+    where: VoyageWhereUniqueInput
+    create: XOR<VoyageCreateWithoutShipInput, VoyageUncheckedCreateWithoutShipInput>
+  }
+
+  export type VoyageCreateManyShipInputEnvelope = {
+    data: VoyageCreateManyShipInput | VoyageCreateManyShipInput[]
+  }
+
+  export type VoyageUpsertWithWhereUniqueWithoutShipInput = {
+    where: VoyageWhereUniqueInput
+    update: XOR<VoyageUpdateWithoutShipInput, VoyageUncheckedUpdateWithoutShipInput>
+    create: XOR<VoyageCreateWithoutShipInput, VoyageUncheckedCreateWithoutShipInput>
+  }
+
+  export type VoyageUpdateWithWhereUniqueWithoutShipInput = {
+    where: VoyageWhereUniqueInput
+    data: XOR<VoyageUpdateWithoutShipInput, VoyageUncheckedUpdateWithoutShipInput>
+  }
+
+  export type VoyageUpdateManyWithWhereWithoutShipInput = {
+    where: VoyageScalarWhereInput
+    data: XOR<VoyageUpdateManyMutationInput, VoyageUncheckedUpdateManyWithoutShipInput>
+  }
+
+  export type VoyageScalarWhereInput = {
+    AND?: VoyageScalarWhereInput | VoyageScalarWhereInput[]
+    OR?: VoyageScalarWhereInput[]
+    NOT?: VoyageScalarWhereInput | VoyageScalarWhereInput[]
+    id?: StringFilter<"Voyage"> | string
+    shipId?: StringFilter<"Voyage"> | string
+    date?: DateTimeFilter<"Voyage"> | Date | string
+  }
+
+  export type BookingCreateWithoutVoyageInput = {
+    id?: string
+    createdAt?: Date | string
+    user?: UserCreateNestedOneWithoutBookingsInput
+  }
+
+  export type BookingUncheckedCreateWithoutVoyageInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type BookingCreateOrConnectWithoutVoyageInput = {
+    where: BookingWhereUniqueInput
+    create: XOR<BookingCreateWithoutVoyageInput, BookingUncheckedCreateWithoutVoyageInput>
+  }
+
+  export type BookingCreateManyVoyageInputEnvelope = {
+    data: BookingCreateManyVoyageInput | BookingCreateManyVoyageInput[]
+  }
+
+  export type ShipCreateWithoutVoyagesInput = {
+    id?: string
+    name: string
+  }
+
+  export type ShipUncheckedCreateWithoutVoyagesInput = {
+    id?: string
+    name: string
+  }
+
+  export type ShipCreateOrConnectWithoutVoyagesInput = {
+    where: ShipWhereUniqueInput
+    create: XOR<ShipCreateWithoutVoyagesInput, ShipUncheckedCreateWithoutVoyagesInput>
+  }
+
+  export type BookingUpsertWithWhereUniqueWithoutVoyageInput = {
+    where: BookingWhereUniqueInput
+    update: XOR<BookingUpdateWithoutVoyageInput, BookingUncheckedUpdateWithoutVoyageInput>
+    create: XOR<BookingCreateWithoutVoyageInput, BookingUncheckedCreateWithoutVoyageInput>
+  }
+
+  export type BookingUpdateWithWhereUniqueWithoutVoyageInput = {
+    where: BookingWhereUniqueInput
+    data: XOR<BookingUpdateWithoutVoyageInput, BookingUncheckedUpdateWithoutVoyageInput>
+  }
+
+  export type BookingUpdateManyWithWhereWithoutVoyageInput = {
+    where: BookingScalarWhereInput
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutVoyageInput>
+  }
+
+  export type ShipUpsertWithoutVoyagesInput = {
+    update: XOR<ShipUpdateWithoutVoyagesInput, ShipUncheckedUpdateWithoutVoyagesInput>
+    create: XOR<ShipCreateWithoutVoyagesInput, ShipUncheckedCreateWithoutVoyagesInput>
+    where?: ShipWhereInput
+  }
+
+  export type ShipUpdateToOneWithWhereWithoutVoyagesInput = {
+    where?: ShipWhereInput
+    data: XOR<ShipUpdateWithoutVoyagesInput, ShipUncheckedUpdateWithoutVoyagesInput>
+  }
+
+  export type ShipUpdateWithoutVoyagesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ShipUncheckedUpdateWithoutVoyagesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BookingCreateManyUserInput = {
+    id?: string
+    voyageId: string
+    createdAt?: Date | string
+  }
+
+  export type BookingUpdateWithoutUserInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    voyage?: VoyageUpdateOneWithoutBookingsNestedInput
+  }
+
+  export type BookingUncheckedUpdateWithoutUserInput = {
+    voyageId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingUncheckedUpdateManyWithoutUserInput = {
+    voyageId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VoyageCreateManyShipInput = {
+    id?: string
+    date: Date | string
+  }
+
+  export type VoyageUpdateWithoutShipInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUpdateManyWithoutVoyageNestedInput
+  }
+
+  export type VoyageUncheckedUpdateWithoutShipInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUncheckedUpdateManyWithoutVoyageNestedInput
+  }
+
+  export type VoyageUncheckedUpdateManyWithoutShipInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingCreateManyVoyageInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type BookingUpdateWithoutVoyageInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutBookingsNestedInput
+  }
+
+  export type BookingUncheckedUpdateWithoutVoyageInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingUncheckedUpdateManyWithoutVoyageInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

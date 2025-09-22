@@ -14,6 +14,7 @@ model User {
   email String @unique
   password String
   name  String
+  bookings Booking[]
 }
 
 model Booking {
@@ -29,12 +30,16 @@ model Booking {
 model Ship {
   id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String
+  voyages Voyage[]
 }
 
 model Voyage {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   shipId  String
   date    DateTime
+  bookings Booking[]
+
+  ship Ship? @relation(fields: [shipId], references: [id])
 }
 
 
