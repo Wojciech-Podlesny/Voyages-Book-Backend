@@ -1,6 +1,18 @@
 import {Response,Request} from 'express'
 import prisma from '../database/prisma';
 
+/**
+ * @swagger
+ * /ships:
+ *   get:
+ *     summary: Get all ships
+ *     tags: [Ships]
+ *     responses:
+ *       200:
+ *         description: List of all ships
+ *       500:
+ *         description: Server error
+ */
 export const getShips = async (req: Request, res: Response) => {
    try {
       const ships = await prisma.ship.findMany();
@@ -10,6 +22,26 @@ export const getShips = async (req: Request, res: Response) => {
    }
 }
 
+/**
+ * @swagger
+ * /ships/{id}:
+ *   get:
+ *     summary: Get ship by ID
+ *     tags: [Ships]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Ship details
+ *       404:
+ *         description: Ship not found
+ *       500:
+ *         description: Server error
+ */
 export const getShip = async (req: Request, res: Response) => {
    try {
       const ship = await prisma.ship.findUnique({
@@ -24,6 +56,33 @@ export const getShip = async (req: Request, res: Response) => {
    }
 }
 
+/**
+ * @swagger
+ * /ships:
+ *   post:
+ *     summary: Create new ship
+ *     tags: [Ships]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               capacity:
+ *                 type: integer
+ *               type:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Ship created successfully
+ *       500:
+ *         description: Server error
+ */
 export const createShip = async (req: Request, res: Response) => {
    try {
       const ship = await prisma.ship.create({
@@ -35,6 +94,30 @@ export const createShip = async (req: Request, res: Response) => {
    }
 }
 
+/**
+ * @swagger
+ * /ships/{id}:
+ *   put:
+ *     summary: Update ship
+ *     tags: [Ships]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *     responses:
+ *       200:
+ *         description: Ship updated successfully
+ *       500:
+ *         description: Server error
+ */
 export const updateShip = async (req: Request, res: Response) => {
    try {
       const ship = await prisma.ship.update({
@@ -47,6 +130,24 @@ export const updateShip = async (req: Request, res: Response) => {
    }
 }
 
+/**
+ * @swagger
+ * /ships/{id}:
+ *   delete:
+ *     summary: Delete ship
+ *     tags: [Ships]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: Ship deleted successfully
+ *       500:
+ *         description: Server error
+ */
 export const deleteShip = async (req: Request, res: Response) => {
    try {
       await prisma.ship.delete({

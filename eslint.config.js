@@ -1,6 +1,7 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import perfectionist from "eslint-plugin-perfectionist";
+const pluginSecurity = require('eslint-plugin-security');
 
 export default tseslint.config(
   {
@@ -9,6 +10,7 @@ export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
+  pluginSecurity.configs.recommended,
   {
     languageOptions: {
       parserOptions: {
@@ -19,3 +21,4 @@ export default tseslint.config(
   },
   perfectionist.configs["recommended-natural"],
 ); 
+

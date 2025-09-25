@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-const errorMiddleware = (err: any, req: Request, res: Response, next: NextFunction) => {
+const errorMiddleware = async (err: any, req: Request, res: Response, next: NextFunction) => {
   try {
     let error = { ...err };
     error.message = err.message;
