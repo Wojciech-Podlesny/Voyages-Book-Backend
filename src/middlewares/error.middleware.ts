@@ -1,36 +1,36 @@
 import { Request, Response, NextFunction } from 'express';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
-const errorMiddleware = async (err: any, req: Request, res: Response, next: NextFunction) => {
-  try {
-    let error = { ...err };
-    error.message = err.message;
 
-    console.error(err);
+const errorMiddleware = async (err: any, _req: Request, res: Response, _next: NextFunction) => {
+  console.error("Error middleware caught an error:", err);
 
-    if (err.name === "CastError") {
-      const message = "Resource not found";
-      error = new Error(message);
-      error.statusCode = 404;
+  let statusCode = 500;
+  let message = 'Internal Server Error';
+
+  if (err instanceof PrismaClientKnownRequestError) {
+    if (err.code === 'P2002') {
+      statusCode = 400;
+      message = `Duplicate field value: ${err.meta?.target}`;
     }
 
-    if (err.code === 11000) {
-      const message = "Duplicate field value entered";
-      error = new Error(message);
-      error.statusCode = 400;
+    if (err.code === 'P2025') {
+      statusCode = 404;
+      message = 'Resource not found';
     }
 
-    if (err.name === "ValidationError") {
-      const message = Object.values(err.errors).map((val) => (val as { message: string }).message);
-      error = new Error(message.join(','));
-      error.statusCode = 400;
-    }
-
-    res
-      .status(error.statusCode || 500)
-      .json({ success: false, message: error.message || "Server Error" });
-  } catch (error) {
-    next(error);
   }
+
+  if (err.statusCode) {
+    statusCode = err.statusCode;
+    message = err.message
+  }
+
+  res.status(statusCode).json({
+    success: false,
+    message
+  })
+
 };
 
 export default errorMiddleware;

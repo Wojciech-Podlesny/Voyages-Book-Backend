@@ -117,7 +117,8 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   password: 'password',
-  name: 'name'
+  name: 'name',
+  refreshTokens: 'refreshTokens'
 };
 
 exports.Prisma.BookingScalarFieldEnum = {

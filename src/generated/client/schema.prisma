@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./src/generated/client"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  email         String    @unique
+  password      String
+  name          String
+  refreshTokens String[]  @default([])
+  bookings      Booking[]
+}
+
+model Booking {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  voyageId  String   @db.ObjectId
+  createdAt DateTime @default(now())
+
+  user   User?   @relation(fields: [userId], references: [id])
+  voyage Voyage? @relation(fields: [voyageId], references: [id])
+}
+
+model Ship {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  voyages Voyage[]
+}
+
+model Voyage {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  shipId   String    @db.ObjectId
+  date     DateTime
+  bookings Booking[]
+
+  ship Ship? @relation(fields: [shipId], references: [id])
+}

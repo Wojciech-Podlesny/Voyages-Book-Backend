@@ -1204,6 +1204,7 @@ export namespace Prisma {
     email: number
     password: number
     name: number
+    refreshTokens: number
     _all: number
   }
 
@@ -1227,6 +1228,7 @@ export namespace Prisma {
     email?: true
     password?: true
     name?: true
+    refreshTokens?: true
     _all?: true
   }
 
@@ -1307,6 +1309,7 @@ export namespace Prisma {
     email: string
     password: string
     name: string
+    refreshTokens: string[]
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1331,6 +1334,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     name?: boolean
+    refreshTokens?: boolean
     bookings?: boolean | User$bookingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1342,9 +1346,10 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     name?: boolean
+    refreshTokens?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "name", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "name" | "refreshTokens", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     bookings?: boolean | User$bookingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1360,6 +1365,7 @@ export namespace Prisma {
       email: string
       password: string
       name: string
+      refreshTokens: string[]
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1757,6 +1763,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
+    readonly refreshTokens: FieldRef<"User", 'String[]'>
   }
     
 
@@ -5165,7 +5172,8 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     password: 'password',
-    name: 'name'
+    name: 'name',
+    refreshTokens: 'refreshTokens'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -5272,6 +5280,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
+    refreshTokens?: StringNullableListFilter<"User">
     bookings?: BookingListRelationFilter
   }
 
@@ -5280,6 +5289,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     name?: SortOrder
+    refreshTokens?: SortOrder
     bookings?: BookingOrderByRelationAggregateInput
   }
 
@@ -5291,6 +5301,7 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
+    refreshTokens?: StringNullableListFilter<"User">
     bookings?: BookingListRelationFilter
   }, "id" | "email">
 
@@ -5299,6 +5310,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     name?: SortOrder
+    refreshTokens?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -5312,6 +5324,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
+    refreshTokens?: StringNullableListFilter<"User">
   }
 
   export type BookingWhereInput = {
@@ -5460,6 +5473,7 @@ export namespace Prisma {
     email: string
     password: string
     name: string
+    refreshTokens?: UserCreaterefreshTokensInput | string[]
     bookings?: BookingCreateNestedManyWithoutUserInput
   }
 
@@ -5468,6 +5482,7 @@ export namespace Prisma {
     email: string
     password: string
     name: string
+    refreshTokens?: UserCreaterefreshTokensInput | string[]
     bookings?: BookingUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -5475,6 +5490,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    refreshTokens?: UserUpdaterefreshTokensInput | string[]
     bookings?: BookingUpdateManyWithoutUserNestedInput
   }
 
@@ -5482,6 +5498,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    refreshTokens?: UserUpdaterefreshTokensInput | string[]
     bookings?: BookingUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -5490,18 +5507,21 @@ export namespace Prisma {
     email: string
     password: string
     name: string
+    refreshTokens?: UserCreaterefreshTokensInput | string[]
   }
 
   export type UserUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    refreshTokens?: UserUpdaterefreshTokensInput | string[]
   }
 
   export type UserUncheckedUpdateManyInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    refreshTokens?: UserUpdaterefreshTokensInput | string[]
   }
 
   export type BookingCreateInput = {
@@ -5638,6 +5658,14 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type BookingListRelationFilter = {
     every?: BookingWhereInput
     some?: BookingWhereInput
@@ -5653,6 +5681,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     name?: SortOrder
+    refreshTokens?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -5791,6 +5820,10 @@ export namespace Prisma {
     date?: SortOrder
   }
 
+  export type UserCreaterefreshTokensInput = {
+    set: string[]
+  }
+
   export type BookingCreateNestedManyWithoutUserInput = {
     create?: XOR<BookingCreateWithoutUserInput, BookingUncheckedCreateWithoutUserInput> | BookingCreateWithoutUserInput[] | BookingUncheckedCreateWithoutUserInput[]
     connectOrCreate?: BookingCreateOrConnectWithoutUserInput | BookingCreateOrConnectWithoutUserInput[]
@@ -5807,6 +5840,11 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type UserUpdaterefreshTokensInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type BookingUpdateManyWithoutUserNestedInput = {
@@ -6092,6 +6130,7 @@ export namespace Prisma {
     email: string
     password: string
     name: string
+    refreshTokens?: UserCreaterefreshTokensInput | string[]
   }
 
   export type UserUncheckedCreateWithoutBookingsInput = {
@@ -6099,6 +6138,7 @@ export namespace Prisma {
     email: string
     password: string
     name: string
+    refreshTokens?: UserCreaterefreshTokensInput | string[]
   }
 
   export type UserCreateOrConnectWithoutBookingsInput = {
@@ -6138,12 +6178,14 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    refreshTokens?: UserUpdaterefreshTokensInput | string[]
   }
 
   export type UserUncheckedUpdateWithoutBookingsInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    refreshTokens?: UserUpdaterefreshTokensInput | string[]
   }
 
   export type VoyageUpsertWithoutBookingsInput = {
