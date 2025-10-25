@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import prisma from "../database/prisma";
 
 /**
@@ -13,12 +13,22 @@ import prisma from "../database/prisma";
  *       500:
  *         description: Server error
  */
-export const getUsers = async (req: Request, res: Response) => {
+// export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
+//    try {
+//       const users = await prisma.user.findMany();
+//       res.status(200).json({success: true, data: users});
+//    } catch (error) {
+//       next(error)
+//    }
+// }
+
+export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
    try {
       const users = await prisma.user.findMany();
-      res.json(users);
+      const safeUsers = users.map(({ password, refreshTokens, ...rest }) => rest); // Remove sensitive fields
+      res.status(200).json({ success: true, data: safeUsers });
    } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch users' });
+      next(error);
    }
 }
 
@@ -113,7 +123,7 @@ export const deleteUser = async (req: Request, res: Response) => {
  *       500:
  *         description: Server error
  */
-export const getUser = async (req: Request, res: Response) => {
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
    try {
       const user = await prisma.user.findUnique({
          where: { id: req.params.id }
@@ -121,9 +131,9 @@ export const getUser = async (req: Request, res: Response) => {
       if(!user) {
          return res.status(404).json({ error: 'User not found' });
       }
-      res.json(user)
+      res.status(200).json({success: true, data: user});
    } catch(error) {
-      res.status(500).json({ error: 'Failed to fetch user' });
+      next(error)
    }
 }
 

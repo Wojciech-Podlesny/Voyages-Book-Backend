@@ -13,6 +13,7 @@ declare global {
     }
 }
 
+//obsluga odwolywania tokena + dodatkowa opcja
 const authorize = async (req: Request, res: Response, next: NextFunction) => {
     try {
         let token

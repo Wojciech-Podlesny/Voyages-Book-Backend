@@ -10,4 +10,8 @@ export const {
   JWT_EXPIRES_IN,
   JWT_REFRESH_EXPIRES_IN,
   JWT_REFRESH_SECRET,
+  SMTP_HOST,
+  SMTP_PORT,
+  SMTP_USER,
+  SMTP_PASS,
 } = process.env;

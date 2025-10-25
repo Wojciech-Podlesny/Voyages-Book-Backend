@@ -15,6 +15,7 @@ model User {
   password String
   name  String
   refreshTokens String[] @default([])
+  verified Boolean @default(false)
   bookings Booking[]
 }
 

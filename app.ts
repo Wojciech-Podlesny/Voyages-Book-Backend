@@ -1,4 +1,5 @@
-import express, { Request, Response } from 'express';
+import express , {Request,Response}from 'express';
+import 'dotenv/config';
 import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
@@ -10,23 +11,20 @@ import shipsRouter from './routes/ships.routes';
 import voyagesRouter from './routes/voyages.routes';
 import {swaggerSpec} from './config/swagger';
 import errorMiddleware from './middlewares/error.middleware';
+import passport from 'passport';
 
-//  const limiter = rateLimit({
-//    windowMs: 15 * 60 * 1000, 
-//    max: 100, 
-//   standardHeaders: 'draft-7',
-//    legacyHeaders: false,
-//  })
+
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({origin: 'http://localhost:3000',credentials: false}));
+app.use(helmet({ contentSecurityPolicy: false }));
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: false }));
 app.use(cookieParser());
-app.use(helmet());
+app.use(express.json());
+app.use(passport.initialize());
 
 
 app.use('/auth', authRouter);
@@ -35,16 +33,16 @@ app.use('/voyages', voyagesRouter);
 app.use('/bookings', bookingsRouter);
 app.use('/ships', shipsRouter);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use(errorMiddleware)
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to the Voyages Book API');
+  res.send('Voyages Book Backend is running');
 });
+
+
 
 app.listen(port, async () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
-// app.listen(3000,'0.0.0.0', () => {
-//   console.log('Server is running on http://0.0.0.0:3000');
-// });
