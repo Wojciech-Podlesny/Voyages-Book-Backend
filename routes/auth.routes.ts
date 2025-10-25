@@ -7,11 +7,11 @@ const authRouter = Router()
 authRouter.post('/sign-up', signUp);
 authRouter.post('/sign-in', signIn);
 authRouter.post('/sign-out',  signOut);;
-authRouter.post('/verify-token', verifyToken);
+authRouter.get('/verify-token', verifyToken);
 authRouter.post('/refresh-token', refreshToken);
-authRouter.post('/change-password', changePassword);
+authRouter.put('/change-password', changePassword);
 authRouter.post('/reset-password', resetPassword);
 authRouter.post('/request-password-reset', requestResetPassword);
-authRouter.post('/verify-email', verifyEmail);
+authRouter.get('/verify-email', verifyEmail);
 
 export default authRouter
